@@ -408,4 +408,59 @@ $("hintBtn").addEventListener("click", () => {
 $("revealBtn").addEventListener("click", () => {
   const card = currentCard();
   const { answers } = getPromptAndAnswers(card);
-  setFeedback(`👁 Re
+  setFeedback(`👁 Reveal: ${answers[0]}`, "");
+});
+
+$("skipBtn").addEventListener("click", () => {
+  streak = 0;
+  score = Math.max(0, score - 2);
+  setFeedback("➡ Skipped (small penalty).", "");
+  renderStats();
+  nextCard();
+});
+
+$("shuffleBtn").addEventListener("click", () => {
+  startRound();
+});
+
+$("modeEF").addEventListener("click", () => {
+  mode = "EF";
+  $("modeEF").classList.add("active");
+  $("modeFE").classList.remove("active");
+  startRound();
+});
+
+$("modeFE").addEventListener("click", () => {
+  mode = "FE";
+  $("modeFE").classList.add("active");
+  $("modeEF").classList.remove("active");
+  startRound();
+});
+
+$("difficultySelect").addEventListener("change", () => {
+  difficulty = $("difficultySelect").value;
+  startRound();
+});
+
+$("timerSelect").addEventListener("change", () => {
+  startRound();
+});
+
+$("soundBtn").addEventListener("click", () => {
+  soundOn = !soundOn;
+  $("soundBtn").setAttribute("aria-pressed", String(soundOn));
+  $("soundBtn").textContent = soundOn ? "🔊 Sound" : "🔇 Sound";
+  if (soundOn) beep("good");
+});
+
+$("ambienceBtn").addEventListener("click", () => {
+  toggleAmbience();
+});
+
+// make confetti visible (white default)
+ctx.fillStyle = "rgba(255,255,255,.95)";
+
+// init
+renderVocabList();
+updateScroll();
+startRound();
