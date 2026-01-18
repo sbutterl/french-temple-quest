@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Temple Quest: French Vocab</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">△</div>
+      <div>
+        <h1>Temple Quest</h1>
+        <p class="sub">School & Home vocab — type fast, earn your streak</p>
+      </div>
+    </div>
+
+    <div class="toggles">
+      <button id="soundBtn" class="btn small" type="button" aria-pressed="true" title="Toggle sound">🔊 Sound</button>
+      <button id="ambienceBtn" class="btn small" type="button" aria-pressed="false" title="Toggle ambience">🏛️ Ambience</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="panel">
+      <div class="row">
+        <div class="mode">
+          <label class="label">Mode</label>
+          <div class="seg">
+            <button id="modeEF" class="segbtn active" type="button">English ➜ French</button>
+            <button id="modeFE" class="segbtn" type="button">French ➜ English</button>
+          </div>
+        </div>
+
+        <div class="settings">
+          <div class="setting">
+            <label class="label" for="timerSelect">Timer</label>
+            <select id="timerSelect" class="select">
+              <option value="0">Off</option>
+              <option value="60">60s</option>
+              <option value="90">90s</option>
+              <option value="120">120s</option>
+            </select>
+          </div>
+
+          <div class="setting">
+            <label class="label" for="difficultySelect">Temple</label>
+            <select id="difficultySelect" class="select">
+              <option value="normal">Normal</option>
+              <option value="boss">Boss Rush (harder)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="temple">
+        <div class="room">
+          <div class="roomTitle">
+            <span id="roomName">Atrium</span>
+            <span class="pill" id="promptDir">English ➜ French</span>
+          </div>
+
+          <div class="promptBox" role="group" aria-label="Prompt">
+            <div class="promptLabel">Your quest phrase:</div>
+            <div id="prompt" class="prompt">secondary school</div>
+          </div>
+
+          <form id="answerForm" class="answerRow" autocomplete="off">
+            <input id="answer" class="input" placeholder="Type your answer…" />
+            <button class="btn" type="submit">Cast Answer</button>
+          </form>
+
+          <div class="helpRow">
+            <button id="hintBtn" class="btn ghost" type="button">✨ Hint</button>
+            <button id="revealBtn" class="btn ghost" type="button">👁 Reveal</button>
+            <button id="skipBtn" class="btn ghost" type="button">➡ Skip</button>
+            <button id="shuffleBtn" class="btn ghost" type="button">🔀 Shuffle</button>
+          </div>
+
+          <div id="feedback" class="feedback" aria-live="polite"></div>
+
+          <div class="stats">
+            <div class="stat"><div class="k">Score</div><div class="v" id="score">0</div></div>
+            <div class="stat"><div class="k">Streak</div><div class="v" id="streak">0</div></div>
+            <div class="stat"><div class="k">Correct</div><div class="v" id="correct">0</div></div>
+            <div class="stat"><div class="k">Wrong</div><div class="v" id="wrong">0</div></div>
+            <div class="stat"><div class="k">Time</div><div class="v" id="time">—</div></div>
+          </div>
+        </div>
+
+        <aside class="scroll">
+          <h2>Temple Scroll</h2>
+          <p class="tiny">Progress saves on this device.</p>
+
+          <div class="scrollBox">
+            <div class="scrollRow"><span class="skey">Best streak</span><span id="bestStreak" class="sval">0</span></div>
+            <div class="scrollRow"><span class="skey">Best score</span><span id="bestScore" class="sval">0</span></div>
+            <div class="scrollRow"><span class="skey">Total correct</span><span id="totalCorrect" class="sval">0</span></div>
+          </div>
+
+          <details class="details">
+            <summary>📜 View vocab list</summary>
+            <div id="vocabList" class="vocabList"></div>
+          </details>
+
+          <details class="details">
+            <summary>⚙️ “Teacher mode” tips</summary>
+            <ul class="tiny">
+              <li>Pick <b>French ➜ English</b> if the teacher says French and you type English.</li>
+              <li>Pick <b>English ➜ French</b> if the teacher says English and you type French.</li>
+              <li>Accents are optional — <code>college</code> counts for <code>collège</code>.</li>
+            </ul>
+          </details>
+        </aside>
+      </div>
+    </section>
+
+    <footer class="footer tiny">
+      Built for quick revision. You can edit the vocab inside <code>game.js</code>.
+    </footer>
+  </main>
+
+  <canvas id="fx" class="fx" aria-hidden="true"></canvas>
+  <script src="game.js"></script>
+</body>
+</html>
